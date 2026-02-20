@@ -44,6 +44,7 @@
             font-family: 'Inter', sans-serif;
             color: var(--ink);
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 16px;
@@ -259,11 +260,24 @@
             transition: opacity 0.2s, transform 0.15s;
         }
         .wa-btn:active { transform: scale(0.97); opacity: 0.9; }
+
+        /* AVISO DE PRIVACIDAD */
+        .privacy-note {
+            max-width: 400px;
+            margin: 14px auto 0;
+            font-size: 10px;
+            color: #aaa;
+            text-align: center;
+            line-height: 1.6;
+            padding: 0 8px;
+        }
+        .privacy-note a { color: #aaa; text-decoration: underline; }
     </style>
 </head>
 <body>
 
-<div class="card">
+<div style="width:100%;max-width:400px;display:flex;flex-direction:column;align-items:center;">
+<div class="card" style="width:100%;">
 
     <div class="top-bar">
         <div class="avatar">🌿</div>
@@ -356,6 +370,17 @@
             Escribir por WhatsApp
         </a>
     </div>
+
+</div>
+
+<!-- Aviso de privacidad (requerido por condiciones de Meta) -->
+<p class="privacy-note">
+  Este sitio usa tecnologías de seguimiento de terceros, incluido el píxel de Meta, para medir el rendimiento de anuncios y mejorar la experiencia. Al completar este formulario, aceptás el uso de estas tecnologías.
+  Podés optar por no participar en la segmentación de anuncios en
+  <a href="http://www.aboutads.info/choices" target="_blank" rel="noopener">aboutads.info</a>
+  y
+  <a href="http://www.youronlinechoices.eu/" target="_blank" rel="noopener">youronlinechoices.eu</a>.
+</p>
 
 </div>
 
