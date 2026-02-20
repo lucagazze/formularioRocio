@@ -62,7 +62,7 @@ module.exports = async function handler(req, res) {
   try {
     await transporter.sendMail({
       from: '"Psicóloga Rocío – Formulario" <info@algoritmiadesarrollos.com.ar>',
-      to: 'lucagazze1@gmail.com',
+      to: 'lucagazze1@gmail.com, rociofuentes2198@gmail.com',
       subject: `Nueva solicitud de turno – ${name}`,
       html,
     });
