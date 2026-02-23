@@ -18,464 +18,768 @@
     src="https://www.facebook.com/tr?id=3912774378962520&ev=PageView&noscript=1"
     /></noscript>
     <!-- Fin Meta Pixel -->
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solicitar Turno – Psicóloga Rocío</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Reservar Turno – Psic. Rocío</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
-            --sage:      #7a9e87;
-            --sage-dark: #4d7a5e;
-            --cream:     #f7f5f1;
-            --white:     #ffffff;
-            --ink:       #1e1e1e;
-            --muted:     #888;
-            --border:    #e5ddd5;
-            --red:       #d95c5c;
+            --navy:        #0d1b2a;
+            --navy-hover:  #162335;
+            --green:       #1a7f5a;
+            --green-lt:    #22a372;
+            --green-glow:  rgba(26,127,90,0.18);
+            --bg:          #eef1f5;
+            --surface:     #ffffff;
+            --border:      #dce3ee;
+            --border-focus:#1a7f5a;
+            --text:        #111827;
+            --muted:       #6b7280;
+            --muted-lt:    #9ca3af;
+            --red:         #dc2626;
+            --red-glow:    rgba(220,38,38,0.1);
+            --wa:          #25d366;
         }
 
+        html { height: 100%; }
+
         body {
-            min-height: 100vh;
-            background: var(--cream);
-            font-family: 'Inter', sans-serif;
-            color: var(--ink);
+            min-height: 100%;
+            background: var(--bg);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text);
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            padding: 16px;
+            justify-content: flex-start;
+            padding: 16px 14px 48px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
+        /* ─── CARD ─── */
         .card {
-            background: var(--white);
-            border-radius: 18px;
             width: 100%;
-            max-width: 400px;
-            box-shadow: 0 2px 24px rgba(0,0,0,0.08);
+            max-width: 440px;
+            background: var(--surface);
+            border-radius: 20px;
+            box-shadow:
+                0 1px 2px rgba(0,0,0,0.05),
+                0 8px 40px rgba(13,27,42,0.10);
             overflow: hidden;
-            animation: up 0.5s ease both;
+            animation: slideUp 0.4s cubic-bezier(0.22,1,0.36,1) both;
         }
-        @keyframes up {
-            from { opacity:0; transform: translateY(18px); }
-            to   { opacity:1; transform: translateY(0); }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
 
-        .top-bar {
-            background: linear-gradient(135deg, var(--sage), var(--sage-dark));
-            padding: 18px 20px 16px;
+        /* ─── HERO ─── */
+        .hero {
+            background: var(--navy);
+            padding: 22px 22px 20px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 14px;
+            position: relative;
+            overflow: hidden;
         }
-        .avatar {
-            width: 38px; height: 38px;
-            background: rgba(255,255,255,0.2);
+        .hero::after {
+            content: '';
+            position: absolute;
+            right: -30px; top: -30px;
+            width: 140px; height: 140px;
+            background: radial-gradient(circle, rgba(26,127,90,0.25) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero-avatar {
+            width: 52px; height: 52px;
             border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 18px; flex-shrink: 0;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 2.5px solid rgba(255,255,255,0.2);
+            box-shadow: 0 0 0 4px rgba(26,127,90,0.25);
         }
-        .top-bar-text h1 {
-            font-family: 'Lora', serif;
-            font-size: 15px; font-weight: 600;
-            color: #fff; line-height: 1.2;
+        .hero-avatar img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
         }
-        .top-bar-text p {
+        .hero-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.2;
+            margin-bottom: 4px;
+        }
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(26,127,90,0.28);
+            border: 1px solid rgba(26,127,90,0.5);
+            border-radius: 100px;
+            padding: 3px 10px;
             font-size: 11px;
-            color: rgba(255,255,255,0.7);
-            margin-top: 1px;
+            font-weight: 600;
+            color: #6ee7b7;
+        }
+        .hero-tag::before {
+            content: '';
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: #6ee7b7;
+            animation: blink 2s ease-in-out infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50%       { opacity: 0.3; }
         }
 
-        .progress-bar { height: 2px; background: var(--border); }
-        .progress-fill {
-            height: 100%; background: var(--sage);
-            width: 50%; transition: width 0.5s ease;
-        }
-
-        .step { padding: 20px; }
-
-        .step-tag {
-            font-size: 10px; font-weight: 500;
-            letter-spacing: 0.09em; text-transform: uppercase;
-            color: var(--sage-dark);
-            background: rgba(122,158,135,0.12);
-            padding: 3px 10px; border-radius: 20px;
-            display: inline-block; margin-bottom: 12px;
-        }
-
-        /* STEP 1 */
-        #price-step h2 {
-            font-family: 'Lora', serif;
-            font-size: 20px; font-weight: 600;
-            line-height: 1.3; margin-bottom: 6px;
-        }
-        #price-step .sub {
-            font-size: 13px; color: var(--muted);
-            margin-bottom: 14px; line-height: 1.5;
-        }
-
-        .price-pill {
+        /* ─── TRUST BAR ─── */
+        .trust-bar {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            background: linear-gradient(135deg, var(--sage), var(--sage-dark));
-            border-radius: 12px;
-            padding: 14px 18px;
-            margin-bottom: 14px;
+            justify-content: space-around;
+            background: #f8fafc;
+            border-bottom: 1px solid var(--border);
+            padding: 10px 16px;
+            gap: 4px;
         }
-        .p-label { font-size: 10px; color: rgba(255,255,255,0.65); text-transform: uppercase; letter-spacing: 0.07em; }
-        .p-amount { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 600; color: #fff; line-height: 1; }
-        .p-mode   { font-size: 10px; color: rgba(255,255,255,0.55); margin-top: 2px; }
-        .p-badge  {
-            background: rgba(255,255,255,0.15);
-            border-radius: 8px; padding: 6px 10px;
-            font-size: 11px; color: rgba(255,255,255,0.85);
-            text-align: center; line-height: 1.5;
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--muted);
+            white-space: nowrap;
         }
-
-        .btn {
-            display: block; width: 100%;
-            background: linear-gradient(135deg, var(--sage), var(--sage-dark));
-            color: #fff; border: none; border-radius: 10px;
-            padding: 14px; font-family: 'Inter', sans-serif;
-            font-size: 15px; font-weight: 500; cursor: pointer;
-            transition: opacity 0.2s, transform 0.15s;
-        }
-        .btn:active { transform: scale(0.98); opacity: 0.9; }
-
-        .fine-print {
-            text-align: center; font-size: 11px;
-            color: var(--muted); margin-top: 10px;
+        .trust-item svg {
+            width: 13px; height: 13px;
+            color: var(--green);
+            flex-shrink: 0;
         }
 
-        /* STEP 2 */
-        #form-step { display: none; }
+        /* ─── FORM AREA ─── */
+        .form-area {
+            padding: 24px 22px 6px;
+        }
 
-        .form-title {
-            font-family: 'Lora', serif;
-            font-size: 18px; font-weight: 600; margin-bottom: 4px;
+        .form-headline {
+            font-size: 19px;
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.3;
+            margin-bottom: 4px;
         }
         .form-sub {
-            font-size: 12px; color: var(--muted);
-            margin-bottom: 16px; line-height: 1.5;
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.6;
+            margin-bottom: 22px;
         }
 
-        .fg { margin-bottom: 12px; }
-        .fg label {
-            display: block; font-size: 12px; font-weight: 500;
-            color: var(--ink); margin-bottom: 5px;
+        /* ─── FIELDS ─── */
+        .field {
+            margin-bottom: 14px;
+            position: relative;
         }
-        .fg input {
-            width: 100%; padding: 11px 13px;
-            border: 1.5px solid var(--border); border-radius: 9px;
-            font-family: 'Inter', sans-serif; font-size: 14px;
-            color: var(--ink); background: var(--cream); outline: none;
-            transition: border-color 0.2s, box-shadow 0.2s;
+        .field label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 6px;
+            letter-spacing: 0.01em;
         }
-        .fg input::placeholder { color: #bbb; }
-        .fg input:focus {
-            border-color: var(--sage); background: var(--white);
-            box-shadow: 0 0 0 3px rgba(122,158,135,0.13);
+        .field label svg {
+            width: 13px; height: 13px;
+            color: var(--green);
+            flex-shrink: 0;
         }
-        .fg input.err {
+        .field input {
+            width: 100%;
+            padding: 13px 14px 13px 42px;
+            border: 1.5px solid var(--border);
+            border-radius: 11px;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            color: var(--text);
+            background: #fafbfc;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        .field input::placeholder { color: var(--muted-lt); }
+        .field input:focus {
+            border-color: var(--border-focus);
+            background: #fff;
+            box-shadow: 0 0 0 3px var(--green-glow);
+        }
+        .field input.is-valid {
+            border-color: var(--green);
+        }
+        .field input.is-error {
             border-color: var(--red);
-            box-shadow: 0 0 0 3px rgba(217,92,92,0.10);
+            box-shadow: 0 0 0 3px var(--red-glow);
         }
-        .err-msg { font-size: 11px; color: var(--red); margin-top: 3px; display: none; }
+        /* Input icon */
+        .input-icon {
+            position: absolute;
+            left: 14px;
+            bottom: 14px;
+            width: 16px; height: 16px;
+            color: var(--muted-lt);
+            pointer-events: none;
+            transition: color 0.2s;
+        }
+        .field:focus-within .input-icon { color: var(--green); }
+        /* Valid checkmark */
+        .field-check {
+            position: absolute;
+            right: 13px;
+            bottom: 15px;
+            width: 16px; height: 16px;
+            color: var(--green);
+            opacity: 0;
+            transition: opacity 0.2s;
+            pointer-events: none;
+        }
+        .field input.is-valid ~ .field-check { opacity: 1; }
+
+        .err-msg {
+            display: none;
+            font-size: 11.5px;
+            color: var(--red);
+            font-weight: 500;
+            margin-top: 5px;
+            padding-left: 4px;
+        }
         .err-msg.show { display: block; }
 
-        .radio-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-        .radio-option input { position: absolute; opacity: 0; width: 0; height: 0; }
-        .radio-option label {
-            display: flex; flex-direction: column;
-            align-items: center; justify-content: center;
-            gap: 2px; padding: 10px 8px;
-            border: 1.5px solid var(--border); border-radius: 9px;
-            cursor: pointer; font-size: 13px; font-weight: 400;
-            color: var(--muted); background: var(--cream);
-            transition: all 0.18s ease; text-align: center; line-height: 1.3;
+        /* ─── TIME SELECTOR ─── */
+        .time-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
-        .radio-option label small { font-size: 10px; }
-        .radio-option input:checked + label {
-            border-color: var(--sage);
-            background: rgba(122,158,135,0.08);
-            color: var(--sage-dark); font-weight: 500;
+        .time-label svg {
+            width: 13px; height: 13px;
+            color: var(--green);
         }
+        .time-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+        .time-card input { position: absolute; opacity: 0; width: 0; height: 0; }
+        .time-card label {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 12px 14px;
+            border: 1.5px solid var(--border);
+            border-radius: 11px;
+            cursor: pointer;
+            background: #fafbfc;
+            transition: all 0.18s ease;
+            user-select: none;
+        }
+        .time-card label:active { transform: scale(0.98); }
+        .time-icon {
+            font-size: 20px;
+            flex-shrink: 0;
+            line-height: 1;
+        }
+        .time-info .t-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--navy);
+            line-height: 1.2;
+        }
+        .time-info .t-range {
+            font-size: 11px;
+            color: var(--muted);
+            margin-top: 1px;
+        }
+        .time-card input:checked + label {
+            border-color: var(--green);
+            background: rgba(26,127,90,0.06);
+            box-shadow: 0 0 0 3px var(--green-glow);
+        }
+        .time-card input:checked + label .t-name { color: var(--green); }
+        .time-card input:checked + label .time-icon { filter: saturate(1.3); }
 
-        .divider { border: none; border-top: 1px solid var(--border); margin: 14px 0; }
+        .err-time {
+            display: none;
+            font-size: 11.5px;
+            color: var(--red);
+            font-weight: 500;
+            margin-top: 4px;
+            padding-left: 2px;
+        }
+        .err-time.show { display: block; }
+
+        /* ─── SUBMIT ─── */
+        .submit-area {
+            padding: 18px 22px 22px;
+        }
 
         .btn-submit {
-            display: block; width: 100%;
-            background: linear-gradient(135deg, var(--sage), var(--sage-dark));
-            color: #fff; border: none; border-radius: 10px;
-            padding: 14px; font-family: 'Inter', sans-serif;
-            font-size: 15px; font-weight: 500; cursor: pointer;
-            transition: opacity 0.2s, transform 0.15s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            background: var(--green);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            padding: 16px 20px;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            letter-spacing: -0.01em;
+            transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 14px rgba(26,127,90,0.30);
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-submit::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(255,255,255,0.10) 0%, transparent 100%);
+            pointer-events: none;
+        }
+        .btn-submit:hover {
+            background: var(--green-lt);
+            box-shadow: 0 6px 20px rgba(26,127,90,0.38);
         }
         .btn-submit:active { transform: scale(0.98); }
-        .btn-submit:disabled { opacity: 0.65; cursor: not-allowed; }
+        .btn-submit:disabled { opacity: 0.65; cursor: not-allowed; transform: none; box-shadow: none; }
         .btn-submit .spinner {
-            display: none; width: 16px; height: 16px;
-            border: 2px solid rgba(255,255,255,0.35);
-            border-top-color: #fff; border-radius: 50%;
-            animation: spin 0.7s linear infinite; margin: 0 auto;
+            display: none;
+            width: 18px; height: 18px;
+            border: 2.5px solid rgba(255,255,255,0.35);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
         }
         @keyframes spin { to { transform: rotate(360deg); } }
         .btn-submit.loading .btn-text { display: none; }
-        .btn-submit.loading .spinner { display: block; }
+        .btn-submit.loading .spinner  { display: block; }
+        .btn-submit svg { width: 18px; height: 18px; flex-shrink: 0; }
 
-        .lock-note { text-align: center; font-size: 11px; color: var(--muted); margin-top: 10px; }
-
-        /* SUCCESS */
-        #success-step { display: none; padding: 36px 20px; text-align: center; }
-        .ok-circle {
-            width: 56px; height: 56px;
-            background: linear-gradient(135deg, var(--sage), var(--sage-dark));
-            border-radius: 50%; display: flex;
-            align-items: center; justify-content: center;
-            font-size: 24px; color: #fff;
-            margin: 0 auto 14px;
-            animation: pop 0.5s cubic-bezier(0.175,0.885,0.32,1.275) both;
+        .secure-note {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            margin-top: 12px;
+            font-size: 11.5px;
+            color: var(--muted);
         }
-        @keyframes pop {
+        .secure-note svg { width: 13px; height: 13px; color: var(--muted-lt); }
+
+        /* ─── SUCCESS ─── */
+        #success-screen {
+            display: none;
+            padding: 44px 24px 40px;
+            text-align: center;
+        }
+        .ok-ring {
+            width: 72px; height: 72px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--green), var(--green-lt));
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 8px 24px rgba(26,127,90,0.30);
+            animation: popIn 0.5s cubic-bezier(0.175,0.885,0.32,1.275) both;
+        }
+        @keyframes popIn {
             from { transform: scale(0); opacity: 0; }
             to   { transform: scale(1); opacity: 1; }
         }
-        #success-step h2 {
-            font-family: 'Lora', serif;
-            font-size: 20px; font-weight: 600; margin-bottom: 8px;
+        .ok-ring svg {
+            width: 30px; height: 30px;
+            stroke: #fff; fill: none;
+            stroke-width: 2.5;
+            stroke-linecap: round; stroke-linejoin: round;
         }
-        #success-step p { font-size: 13px; color: var(--muted); line-height: 1.6; }
-        .wa-btn {
-            display: inline-flex; align-items: center; gap: 8px;
-            margin-top: 20px;
-            background: #25d366; color: #fff;
-            border: none; border-radius: 10px;
-            padding: 13px 22px;
-            font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500;
-            text-decoration: none; cursor: pointer;
+        #success-screen h2 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 10px;
+        }
+        #success-screen p {
+            font-size: 14px;
+            color: var(--muted);
+            line-height: 1.7;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        .wa-success-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            margin-top: 24px;
+            background: var(--wa);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 12px;
+            padding: 14px 24px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
             transition: opacity 0.2s, transform 0.15s;
+            box-shadow: 0 4px 14px rgba(37,211,102,0.30);
         }
-        .wa-btn:active { transform: scale(0.97); opacity: 0.9; }
+        .wa-success-btn:active { transform: scale(0.97); opacity: 0.9; }
+        .wa-success-btn svg { width: 20px; height: 20px; fill: #fff; flex-shrink: 0; }
 
-        /* BOTÓN FLOTANTE WHATSAPP */
+        /* ─── FOOTER ─── */
+        .page-footer {
+            width: 100%;
+            max-width: 440px;
+            text-align: center;
+            margin-top: 16px;
+            font-size: 10.5px;
+            color: #9ca3af;
+            line-height: 1.65;
+            padding: 0 4px;
+        }
+        .page-footer a { color: #9ca3af; }
+
+        /* ─── WHATSAPP FLOAT ─── */
         .wa-float {
             position: fixed;
-            bottom: 24px;
-            right: 24px;
+            bottom: 20px;
+            right: 20px;
             z-index: 9999;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 9px;
             text-decoration: none;
-            background: #25d366;
+            background: var(--wa);
             color: #fff;
             font-family: 'Inter', sans-serif;
-            font-size: 14px;
-            font-weight: 500;
-            padding: 0 20px 0 14px;
-            height: 52px;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 0 18px 0 12px;
+            height: 48px;
             border-radius: 999px;
-            box-shadow: 0 4px 20px rgba(37,211,102,0.45);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            position: fixed;
-            overflow: visible;
+            box-shadow: 0 4px 18px rgba(37,211,102,0.38), 0 2px 8px rgba(0,0,0,0.10);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
         .wa-float::before {
             content: '';
             position: absolute;
             inset: 0;
             border-radius: 999px;
-            background: #25d366;
-            animation: wa-pulse 2.2s ease-out infinite;
+            background: var(--wa);
+            animation: waPulse 2.4s ease-out infinite;
             z-index: -1;
         }
-        @keyframes wa-pulse {
-            0%   { transform: scale(1); opacity: 0.7; }
-            70%  { transform: scale(1.4); opacity: 0; }
-            100% { transform: scale(1.4); opacity: 0; }
+        @keyframes waPulse {
+            0%   { transform: scale(1);    opacity: 0.55; }
+            70%  { transform: scale(1.45); opacity: 0; }
+            100% { transform: scale(1.45); opacity: 0; }
         }
-        .wa-float svg { width: 26px; height: 26px; fill: #fff; flex-shrink: 0; }
+        .wa-float svg { width: 23px; height: 23px; fill: #fff; flex-shrink: 0; }
         .wa-float:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 28px rgba(37,211,102,0.55);
+            transform: scale(1.04);
+            box-shadow: 0 6px 26px rgba(37,211,102,0.48), 0 2px 10px rgba(0,0,0,0.12);
         }
-
-        /* AVISO DE PRIVACIDAD */
-        .privacy-note {
-            max-width: 400px;
-            margin: 14px auto 0;
-            font-size: 10px;
-            color: #aaa;
-            text-align: center;
-            line-height: 1.6;
-            padding: 0 8px;
-        }
-        .privacy-note a { color: #aaa; text-decoration: underline; }
     </style>
 </head>
 <body>
 
-<div style="width:100%;max-width:400px;display:flex;flex-direction:column;align-items:center;">
-<div class="card" style="width:100%;">
+<!-- ═══════════════════════════════ CARD ═══════════════════════════════ -->
+<div class="card">
 
-    <div class="top-bar">
-        <div class="avatar">🌿</div>
-        <div class="top-bar-text">
-            <h1>Psicóloga Rocío</h1>
-            <p>Atención online · Turnos disponibles</p>
+    <!-- HERO -->
+    <div class="hero">
+        <div class="hero-avatar">
+            <img src="./avatar.webp" alt="Psic. Rocío" loading="eager">
+        </div>
+        <div class="hero-text">
+            <div class="hero-name">Psicóloga Rocío</div>
+            <div class="hero-tag">🟢 Agenda disponible</div>
         </div>
     </div>
-    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
 
-    <!-- PASO 1 -->
-    <div class="step" id="price-step">
-        <span class="step-tag">Paso 1 de 2</span>
-        <h2>Antes de continuar</h2>
-        <p class="sub">La sesión es <strong>online</strong>. El valor es:</p>
-
-        <div class="price-pill">
-            <div>
-                <div class="p-label">Por sesión</div>
-                <div class="p-amount">$40.000</div>
-                <div class="p-mode">pesos argentinos</div>
-            </div>
-            <div class="p-badge">💻 Online<br>🔒 Privado</div>
+    <!-- TRUST BAR -->
+    <div class="trust-bar">
+        <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            100% privado
         </div>
-
-        <button class="btn" id="confirmBtn">Entendido, quiero continuar</button>
-        <p class="fine-print">Sin compromisos · Te contactamos en 24hs</p>
+        <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            Sesión online
+        </div>
+        <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            Resp. en 24 hs
+        </div>
     </div>
 
-    <!-- PASO 2 -->
-    <div class="step" id="form-step">
-        <span class="step-tag">Paso 2 de 2</span>
-        <p class="form-title">Completá tus datos</p>
-        <p class="form-sub">Te escribimos por WhatsApp para confirmar.</p>
+    <!-- FORM -->
+    <div id="main-form">
+        <div class="form-area">
+            <p class="form-headline">Reservá tu turno</p>
+            <p class="form-sub">Completá los datos y te escribimos para confirmar.</p>
 
-        <form id="turnoForm" novalidate>
+            <form id="turnoForm" novalidate>
 
-            <div class="fg">
-                <label for="full-name">Nombre completo</label>
-                <input type="text" id="full-name" autocomplete="name" placeholder="Ej: Juan Pérez">
-                <div class="err-msg" id="err-name">Ingresá tu nombre completo.</div>
-            </div>
-
-            <div class="fg">
-                <label for="phone-number">Teléfono (WhatsApp)</label>
-                <input type="tel" id="phone-number" autocomplete="tel" placeholder="Ej: +54 9 11 1234 5678">
-                <div class="err-msg" id="err-phone">Ingresá un número válido.</div>
-            </div>
-
-            <div class="fg">
-                <label for="your-email">Correo electrónico</label>
-                <input type="email" id="your-email" autocomplete="email" placeholder="Ej: juan@email.com">
-                <div class="err-msg" id="err-email">Ingresá un email válido.</div>
-            </div>
-
-            <div class="fg">
-                <label>Preferencia horaria</label>
-                <div class="radio-row">
-                    <div class="radio-option">
-                        <input type="radio" name="preferred-time" id="time-morning" value="Mañana (8hs a 12hs)">
-                        <label for="time-morning">☀️ Mañana<br><small>8 a 12hs</small></label>
-                    </div>
-                    <div class="radio-option">
-                        <input type="radio" name="preferred-time" id="time-afternoon" value="Tarde (13hs a 19hs)">
-                        <label for="time-afternoon">🌅 Tarde<br><small>13 a 19hs</small></label>
-                    </div>
+                <!-- Nombre -->
+                <div class="field">
+                    <label for="full-name">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        Nombre completo
+                    </label>
+                    <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    <input type="text" id="full-name" autocomplete="name" placeholder="Ej: María González" inputmode="text">
+                    <svg class="field-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    <div class="err-msg" id="err-name">Ingresá tu nombre completo.</div>
                 </div>
-                <div class="err-msg" id="err-time">Seleccioná una opción.</div>
-            </div>
 
-            <hr class="divider">
+                <!-- WhatsApp -->
+                <div class="field">
+                    <label for="phone-number">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 11a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.92 0h3a2 2 0 0 1 2 1.72c.133 1.09.37 2.163.71 3.2a2 2 0 0 1-.45 2.11L8.09 8.09a16 16 0 0 0 7.82 7.82l1.06-1.06a2 2 0 0 1 2.11-.45c1.04.34 2.11.576 3.2.71A2 2 0 0 1 24 17l-.08.92z"/></svg>
+                        WhatsApp
+                    </label>
+                    <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 11a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.92 0h3a2 2 0 0 1 2 1.72c.133 1.09.37 2.163.71 3.2a2 2 0 0 1-.45 2.11L8.09 8.09a16 16 0 0 0 7.82 7.82l1.06-1.06a2 2 0 0 1 2.11-.45c1.04.34 2.11.576 3.2.71A2 2 0 0 1 24 17l-.08.92z"/></svg>
+                    <input type="tel" id="phone-number" autocomplete="tel" placeholder="Ej: +54 9 11 1234 5678" inputmode="tel">
+                    <svg class="field-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    <div class="err-msg" id="err-phone">Ingresá un número válido.</div>
+                </div>
 
-            <button type="submit" class="btn-submit" id="submitBtn">
-                <span class="btn-text">🗓 Solicitar Turno</span>
+                <!-- Email -->
+                <div class="field">
+                    <label for="your-email">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        Correo electrónico
+                    </label>
+                    <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    <input type="email" id="your-email" autocomplete="email" placeholder="Ej: maria@email.com" inputmode="email">
+                    <svg class="field-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    <div class="err-msg" id="err-email">Ingresá un e-mail válido.</div>
+                </div>
+
+                <!-- Horario -->
+                <div>
+                    <div class="time-label">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        ¿Qué horario preferís?
+                    </div>
+                    <div class="time-grid">
+                        <div class="time-card">
+                            <input type="radio" name="preferred-time" id="time-morning" value="Mañana (8hs a 12hs)">
+                            <label for="time-morning">
+                                <span class="time-icon">☀️</span>
+                                <span class="time-info">
+                                    <span class="t-name">Mañana</span>
+                                    <span class="t-range">8:00 – 12:00 hs</span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="time-card">
+                            <input type="radio" name="preferred-time" id="time-afternoon" value="Tarde (13hs a 19hs)">
+                            <label for="time-afternoon">
+                                <span class="time-icon">🌆</span>
+                                <span class="time-info">
+                                    <span class="t-name">Tarde</span>
+                                    <span class="t-range">13:00 – 19:00 hs</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="err-time" id="err-time">Seleccioná un horario preferido.</div>
+                </div>
+
+            </form>
+        </div>
+
+        <!-- SUBMIT -->
+        <div class="submit-area">
+            <button type="submit" class="btn-submit" id="submitBtn" form="turnoForm">
+                <span class="btn-text">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    Reservar mi turno ahora
+                </span>
                 <div class="spinner"></div>
             </button>
-            <p class="lock-note">🔒 Tus datos son privados y seguros</p>
-
-        </form>
+            <div class="secure-note">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                Tus datos son privados y seguros
+            </div>
+        </div>
     </div>
 
-    <!-- ÉXITO -->
-    <div id="success-step">
-        <div class="ok-circle">✓</div>
-        <h2>¡Listo!</h2>
-        <p>Gracias, <strong id="userName"></strong>. Te escribimos por WhatsApp a la brevedad para confirmar tu turno. 🌿</p>
-        <p style="margin-top:10px;">Si querés comunicarte antes, podés escribirnos directamente:</p>
-        <a class="wa-btn" href="https://wa.me/5492954559165" target="_blank" rel="noopener" onclick="if(typeof fbq!=='undefined') fbq('track','Lead',{content_name:'whatsapp_success_btn'});">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <!-- SUCCESS -->
+    <div id="success-screen">
+        <div class="ok-ring">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h2>¡Turno solicitado!</h2>
+        <p>Gracias, <strong id="userName"></strong>. Te escribimos por WhatsApp a la brevedad para coordinar el día y horario de tu primera sesión. 🌿</p>
+        <a class="wa-success-btn" href="https://wa.me/5492954559165" target="_blank" rel="noopener"
+           onclick="if(typeof fbq!=='undefined') fbq('track','Lead',{content_name:'whatsapp_success_btn'});">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             Escribir por WhatsApp
         </a>
     </div>
 
 </div>
+<!-- ═══════════════════════════════ / CARD ═══════════════════════════════ -->
 
-<!-- Aviso de privacidad (requerido por condiciones de Meta) -->
-<p class="privacy-note">
-  Este sitio usa tecnologías de seguimiento de terceros, incluido el píxel de Meta, para medir el rendimiento de anuncios y mejorar la experiencia. Al completar este formulario, aceptás el uso de estas tecnologías.
-  Podés optar por no participar en la segmentación de anuncios en
-  <a href="http://www.aboutads.info/choices" target="_blank" rel="noopener">aboutads.info</a>
-  y
-  <a href="http://www.youronlinechoices.eu/" target="_blank" rel="noopener">youronlinechoices.eu</a>.
-</p>
-
+<!-- FOOTER -->
+<div class="page-footer">
+    Este sitio usa el Píxel de Meta para medir el rendimiento de anuncios.
+    Al completar el formulario, aceptás el uso de estas tecnologías.
+    Podés optar por no participar en
+    <a href="http://www.aboutads.info/choices" target="_blank" rel="noopener">aboutads.info</a> y
+    <a href="http://www.youronlinechoices.eu/" target="_blank" rel="noopener">youronlinechoices.eu</a>.
 </div>
 
-<script>
-    const confirmBtn   = document.getElementById('confirmBtn');
-    const priceStep    = document.getElementById('price-step');
-    const formStep     = document.getElementById('form-step');
-    const successStep  = document.getElementById('success-step');
-    const progressFill = document.getElementById('progressFill');
-    const form         = document.getElementById('turnoForm');
-    const submitBtn    = document.getElementById('submitBtn');
+<!-- BOTÓN FLOTANTE WHATSAPP -->
+<a class="wa-float" href="https://wa.me/5492954559165" target="_blank" rel="noopener"
+   aria-label="Escribir por WhatsApp"
+   onclick="if(typeof fbq!=='undefined') fbq('track','Lead',{content_name:'whatsapp_float_btn'});">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+    <span>Consultas</span>
+</a>
 
-    confirmBtn.addEventListener('click', () => {
-        priceStep.style.transition = 'opacity 0.25s';
-        priceStep.style.opacity = '0';
+<script>
+    const form      = document.getElementById('turnoForm');
+    const submitBtn = document.getElementById('submitBtn');
+
+    // ── Auto-focus al cargar ──
+    window.addEventListener('load', () => {
         setTimeout(() => {
-            priceStep.style.display = 'none';
-            formStep.style.display = 'block';
-            formStep.style.opacity = '0';
-            formStep.style.transition = 'opacity 0.3s';
-            setTimeout(() => formStep.style.opacity = '1', 20);
-            progressFill.style.width = '100%';
-        }, 260);
+            const nameInput = document.getElementById('full-name');
+            if (nameInput) nameInput.focus();
+        }, 600);
     });
 
-    function validate() {
+    // ── Validación en tiempo real por campo ──
+    function validateField(input) {
+        const id  = input.id;
+        let valid = false;
+
+        if (id === 'full-name') {
+            valid = input.value.trim().length >= 3;
+            toggleFieldState(input, 'err-name', !valid && input.value.trim().length > 0);
+        } else if (id === 'phone-number') {
+            const digits = input.value.replace(/\D/g,'');
+            valid = digits.length >= 8 && digits.length <= 15;
+            toggleFieldState(input, 'err-phone', !valid && input.value.trim().length > 0);
+        } else if (id === 'your-email') {
+            valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value.trim());
+            toggleFieldState(input, 'err-email', !valid && input.value.trim().length > 0);
+        }
+
+        if (valid) {
+            input.classList.remove('is-error');
+            input.classList.add('is-valid');
+        }
+    }
+
+    function toggleFieldState(input, errId, showErr) {
+        const errEl = document.getElementById(errId);
+        if (showErr) {
+            input.classList.add('is-error');
+            input.classList.remove('is-valid');
+            if (errEl) errEl.classList.add('show');
+        } else {
+            input.classList.remove('is-error');
+            if (errEl) errEl.classList.remove('show');
+        }
+    }
+
+    ['full-name','phone-number','your-email'].forEach(id => {
+        const el = document.getElementById(id);
+        el.addEventListener('input', () => validateField(el));
+        el.addEventListener('blur',  () => {
+            if (el.value.trim()) validateField(el);
+        });
+    });
+
+    // ── Auto-avance de campo al presionar Enter ──
+    document.getElementById('full-name').addEventListener('keydown', e => {
+        if (e.key === 'Enter') { e.preventDefault(); document.getElementById('phone-number').focus(); }
+    });
+    document.getElementById('phone-number').addEventListener('keydown', e => {
+        if (e.key === 'Enter') { e.preventDefault(); document.getElementById('your-email').focus(); }
+    });
+
+    // ── Validación completa on submit ──
+    function fullValidate() {
         let ok = true;
-        const setField = (inputId, errId, cond) => {
-            const el = document.getElementById(inputId);
-            const em = document.getElementById(errId);
-            if (cond) { el.classList.add('err'); em.classList.add('show'); ok = false; }
-            else       { el.classList.remove('err'); em.classList.remove('show'); }
-        };
-        const name  = document.getElementById('full-name').value.trim();
-        const phone = document.getElementById('phone-number').value.replace(/\D/g,'');
-        const email = document.getElementById('your-email').value.trim();
-        const time  = document.querySelector('input[name="preferred-time"]:checked');
 
-        setField('full-name',    'err-name',  name.length < 3);
-        setField('phone-number', 'err-phone', phone.length < 8 || phone.length > 15);
-        setField('your-email',   'err-email', !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email));
-
+        const nameEl  = document.getElementById('full-name');
+        const phoneEl = document.getElementById('phone-number');
+        const emailEl = document.getElementById('your-email');
+        const time    = document.querySelector('input[name="preferred-time"]:checked');
         const errTime = document.getElementById('err-time');
+
+        const nameOk  = nameEl.value.trim().length >= 3;
+        const digits  = phoneEl.value.replace(/\D/g,'');
+        const phoneOk = digits.length >= 8 && digits.length <= 15;
+        const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value.trim());
+
+        [
+            [nameEl,  'err-name',  !nameOk],
+            [phoneEl, 'err-phone', !phoneOk],
+            [emailEl, 'err-email', !emailOk],
+        ].forEach(([el, errId, isErr]) => {
+            const errEl = document.getElementById(errId);
+            if (isErr) {
+                el.classList.add('is-error'); el.classList.remove('is-valid');
+                errEl.classList.add('show'); ok = false;
+            } else {
+                el.classList.remove('is-error'); el.classList.add('is-valid');
+                errEl.classList.remove('show');
+            }
+        });
+
         if (!time) { errTime.classList.add('show'); ok = false; }
-        else         errTime.classList.remove('show');
+        else          errTime.classList.remove('show');
 
         return ok;
     }
 
+    // ── Submit ──
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        if (!validate()) return;
+        if (!fullValidate()) {
+            // Scroll al primer error
+            const firstErr = form.querySelector('.is-error, .err-time.show');
+            if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            return;
+        }
 
         submitBtn.classList.add('loading');
         submitBtn.disabled = true;
@@ -488,12 +792,16 @@
         };
 
         try {
-            const res    = await fetch('/api/send', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data) });
+            const res    = await fetch('/api/send', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
             const result = await res.json();
             if (result.success) {
                 showSuccess(data.name);
             } else {
-                alert('Hubo un error. Intentá de nuevo.');
+                alert('Hubo un error. Intentá nuevamente.');
                 submitBtn.classList.remove('loading');
                 submitBtn.disabled = false;
             }
@@ -505,29 +813,22 @@
     });
 
     function showSuccess(name) {
-        formStep.style.transition = 'opacity 0.25s';
-        formStep.style.opacity = '0';
+        const mainForm = document.getElementById('main-form');
+        mainForm.style.transition = 'opacity 0.22s';
+        mainForm.style.opacity = '0';
         setTimeout(() => {
-            formStep.style.display = 'none';
+            mainForm.style.display = 'none';
             document.getElementById('userName').textContent = name.split(' ')[0];
-            successStep.style.display = 'block';
-        }, 260);
+            const screen = document.getElementById('success-screen');
+            screen.style.display = 'block';
+            screen.style.opacity = '0';
+            screen.style.transition = 'opacity 0.3s';
+            setTimeout(() => screen.style.opacity = '1', 20);
+        }, 230);
         // Meta Pixel – Lead
         if (typeof fbq !== 'undefined') fbq('track', 'Lead');
     }
-
-    ['full-name','phone-number','your-email'].forEach(id =>
-        document.getElementById(id).addEventListener('blur', validate)
-    );
 </script>
-
-<!-- BOTÓN FLOTANTE WHATSAPP -->
-<a class="wa-float" href="https://wa.me/5492954559165" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp" onclick="if(typeof fbq!=='undefined') fbq('track','Lead',{content_name:'whatsapp_float_btn'});">
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-    </svg>
-    <span>Consultas?</span>
-</a>
 
 </body>
 </html>
