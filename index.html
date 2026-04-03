@@ -398,6 +398,66 @@
         }
         .secure-note svg { width: 13px; height: 13px; color: var(--muted-lt); }
 
+        /* ─── INTRO SCREEN ─── */
+        #intro-screen {
+            padding: 24px 22px;
+        }
+        .intro-headline {
+            font-size: 19px;
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.3;
+            margin-bottom: 16px;
+        }
+        .cond-list {
+            background: #fafbfc;
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 18px;
+        }
+        .cond-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .cond-item:last-child {
+            margin-bottom: 0;
+        }
+        .cond-icon {
+            color: var(--green);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background: var(--green-glow);
+            border-radius: 8px;
+        }
+        .cond-icon svg {
+            width: 17px; height: 17px;
+        }
+        .cond-text {
+            font-size: 14px;
+            color: var(--text);
+            line-height: 1.4;
+        }
+        .cond-text strong {
+            color: var(--navy);
+            font-weight: 600;
+            display: block;
+            font-size: 13px;
+        }
+        .intro-note {
+            font-size: 13.5px;
+            color: var(--muted);
+            line-height: 1.6;
+            margin-bottom: 22px;
+            text-align: center;
+        }
+
         /* ─── SUCCESS ─── */
         #success-screen {
             display: none;
@@ -542,8 +602,52 @@
         </div>
     </div>
 
+    <!-- INTRO SCREEN -->
+    <div id="intro-screen">
+        <p class="intro-headline">Condiciones de atención</p>
+        
+        <div class="cond-list">
+            <div class="cond-item">
+                <div class="cond-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                </div>
+                <div class="cond-text">
+                    <strong>Valor por sesión</strong>
+                    $50.000
+                </div>
+            </div>
+            <div class="cond-item">
+                <div class="cond-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                </div>
+                <div class="cond-text">
+                    <strong>Modalidad</strong>
+                    Online
+                </div>
+            </div>
+            <div class="cond-item">
+                <div class="cond-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                </div>
+                <div class="cond-text">
+                    <strong>Frecuencia</strong>
+                    Semanal / Quincenal
+                </div>
+            </div>
+        </div>
+
+        <p class="intro-note">Por favor, completá los datos solo si aceptás las condiciones de atención. Una vez recibido, coordinaremos el día y horario del turno.</p>
+        
+        <button type="button" class="btn-submit" id="btnAceptarCondiciones">
+            <span class="btn-text">
+                Aceptar condiciones
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 5px;"><polyline points="9 18 15 12 9 6"/></svg>
+            </span>
+        </button>
+    </div>
+
     <!-- FORM -->
-    <div id="main-form">
+    <div id="main-form" style="display: none;">
         <div class="form-area">
             <p class="form-headline">Reservá tu turno</p>
             <p class="form-sub">Completá los datos y te escribimos para confirmar.</p>
@@ -676,12 +780,26 @@
     const form      = document.getElementById('turnoForm');
     const submitBtn = document.getElementById('submitBtn');
 
-    // ── Auto-focus al cargar ──
-    window.addEventListener('load', () => {
+    // ── INTRO SCREEN LOGIC ──
+    const introScreen = document.getElementById('intro-screen');
+    const mainForm = document.getElementById('main-form');
+    const btnAceptarCondiciones = document.getElementById('btnAceptarCondiciones');
+
+    btnAceptarCondiciones.addEventListener('click', () => {
+        introScreen.style.transition = 'opacity 0.22s';
+        introScreen.style.opacity = '0';
         setTimeout(() => {
-            const nameInput = document.getElementById('full-name');
-            if (nameInput) nameInput.focus();
-        }, 600);
+            introScreen.style.display = 'none';
+            mainForm.style.display = 'block';
+            mainForm.style.opacity = '0';
+            mainForm.style.transition = 'opacity 0.3s';
+            setTimeout(() => {
+                mainForm.style.opacity = '1';
+                // Auto-focus en el nombre
+                const nameInput = document.getElementById('full-name');
+                if (nameInput) nameInput.focus();
+            }, 20);
+        }, 230);
     });
 
     // ── Validación en tiempo real por campo ──
